@@ -15,7 +15,7 @@ function replaceFields(string, fields) {
 
 function renderFiles({templateName, fields}, configLocation) {
     const config = getTemplateConfig(templateName, configLocation);
-    const pwd = process.env.PWD;
+    const pwd = process.cwd();
     const destinationDirectory = path.resolve(pwd, config.outputPath);
     const templateDirectory = path.resolve(pwd, config.templatePath);
     const isFolderTemplate = isDirectory(templateDirectory);
