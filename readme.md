@@ -62,6 +62,7 @@ module.exports = [
     name: "Normal React Component",
     templatePath: "templates/COMPONENT_NAME.js",
     outputPath: "src/components/",
+    skipPatterns: ["node_modules"],
     fields: [
       {
         templateVariable: "COMPONENT_NAME",
@@ -100,6 +101,7 @@ module.exports = [
        name: "Normal React Component",
         templatePath: "templates/COMPONENT_NAME/index.js",
         outputPath: "src/components/",
+        skipPatterns: ["node_modules"],
         fields: [
             {
                 templateVariable: 'COMPONENT_NAME',
@@ -126,6 +128,7 @@ module.exports = [
        name: "Normal React Component",
         templatePath: "templates/COMPONENT_NAME/index.js",
         outputPath: "src/components/",
+        skipPatterns: ["node_modules"],
         fields: [
             {
                 templateVariable: 'COMPONENT_NAME',

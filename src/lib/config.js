@@ -8,6 +8,7 @@ const CONFIG_SCHEMA = [
         name: isString(1),
         templatePath: isPath(),
         outputPath: isPath(),
+        skipPatterns: isOptional(isStringArray(1)),
         fields: [
             isArray(1),
             {
@@ -35,6 +36,15 @@ function errorReceived(val) {
         return `Received an array: ${val}`;
     }
     return `Received: ${val}`;
+}
+
+function isStringArray(minLength = 0) {
+    return (key, val) => {
+        if (Array.isArray(val) && val.every(item => typeof item === 'string' && item.length >= minLength)) {
+            return;
+        }
+        throw new Error(`${errorPrefix(key)} should be an array of strings each at least ${minLength} characters in length. ${errorReceived(val)}`);
+    };
 }
 
 function isString(minLength = 0) {
