@@ -3,7 +3,7 @@ module.exports = [
     name: "Normal Component",
     templatePath: "templates/COMPONENT_NAME/",
     outputPath: "output/",
-    skipPatterns: ["skip.js"],
+    skipPatterns: ["skip.js", "skip-folder"],
     fields: [
       {
         templateVariable: "COMPONENT_NAME",
