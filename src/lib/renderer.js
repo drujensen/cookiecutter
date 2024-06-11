@@ -28,7 +28,15 @@ function renderFiles({ templateName, fields }, configLocation) {
         return fs.statSync(p).isDirectory();
     }
 
+    function shouldSkipPath(filePath) {
+        return skipPatterns.some(pattern => new RegExp(pattern).test(filePath));
+    }
+
     function getTemplateFiles(dir) {
+        if (shouldSkipPath(dir)) {
+            return; // Skip the entire directory if it matches the skip pattern
+        }
+
         if (isDirectory(dir)) {
             const files = fs.readdirSync(dir);
             files.forEach(fileDir => {
@@ -44,14 +52,10 @@ function renderFiles({ templateName, fields }, configLocation) {
         }
     }
 
-    function shouldSkipFile(filePath) {
-        return skipPatterns.some(pattern => new RegExp(pattern).test(filePath));
-    }
-
     getTemplateFiles(templateDirectory);
 
     filesToOutput = templateFiles.map(filePath => {
-        if (shouldSkipFile(filePath)) {
+        if (shouldSkipPath(filePath)) {
             return null; // Return null for files that should be skipped
         }
 
